@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jagruti Construction | Building the Future</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --gold: #d4af37;
+            --gold-hover: #f1c40f;
+            --bg-dark: #081320;
+            --bg-glass: rgba(255, 255, 255, 0.05);
+            --border-glass: rgba(255, 255, 255, 0.1);
+            --text-main: #ffffff;
+            --text-dim: #a0aec0;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 30px;
+            background: rgba(8, 19, 32, 0.8);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glass);
+            border-radius: 100px;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-circle {
+            width: 40px;
+            height: 40px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-size: 1.4rem;
+        }
+
+        .links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .links a {
+            color: var(--text-dim);
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .links a:hover, .links a.active {
+            color: var(--gold);
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(to right, rgba(8, 19, 32, 0.9), rgba(8, 19, 32, 0.4)),
+                        url('https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=2070') center/cover no-repeat;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 25px;
+        }
+
+        .gold-text {
+            color: var(--gold);
+            background: linear-gradient(45deg, #d4af37, #f1c40f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: #000;
+            margin-right: 15px;
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--gold);
+            color: var(--gold);
+        }
+
+        .btn-outline:hover {
+            background: var(--gold);
+            color: #000;
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .section-header .line {
+            width: 60px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 2px;
+        }
+
+        /* Glass Cards */
+        .glass-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-glass);
+            padding: 40px;
+            border-radius: 30px;
+            transition: var(--transition);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-5px);
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-img {
+            position: relative;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .about-img img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .project-item {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+        }
+
+        .project-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            opacity: 0;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 25px;
+        }
+
+        .project-item:hover .project-overlay { opacity: 1; }
+        .project-item:hover img { transform: scale(1.1); }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 40px;
+        }
+
+        .contact-info p {
+            color: var(--text-dim);
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-card {
+            margin-bottom: 30px;
+        }
+
+        .contact-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 16px;
+            background: #122336;
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            color: white;
+            margin-bottom: 15px;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        form input:focus, form textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            background: #1a2f45;
+        }
+
+        /* Floating WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            z-index: 999;
+            transition: var(--transition);
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        /* Lightbox */
+        #lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            cursor: zoom-out;
+        }
+
+        #lightbox img {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 0;
+            border-top: 1px solid var(--border-glass);
+            color: var(--text-dim);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .about-grid, .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-img { height: 350px; }
+            .hero h1 { font-size: 3rem; }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .links {
+                position: absolute;
+                top: 80px;
+                right: 0;
+                background: #0d1b2b;
+                width: 250px;
+                flex-direction: column;
+                padding: 30px;
+                border-radius: 24px;
+                border: 1px solid var(--border-glass);
+                display: none;
+            }
+            .links.show { display: flex; }
+            nav { border-radius: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <div class="logo">
+            <div class="logo-circle">J</div>
+            Jagruti Construction
+        </div>
+        <div class="links" id="navLinks">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Crafting Infrastructure with <span class="gold-text">Excellence</span></h1>
+                <p style="font-size: 1.2rem; color: var(--text-dim); margin-bottom: 40px;">
+                    Premier construction services specializing in roads, drains, and culverts for a stronger tomorrow.
+                </p>
+                <div class="hero-btns">
+                    <a href="#contact" class="btn btn-primary">Start Building</a>
+                    <a href="#projects" class="btn btn-outline">Our Projects</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-img">
+                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=1000" alt="Construction Site">
+                </div>
+                <div class="glass-card">
+                    <div class="section-header">
+                        <p style="color: var(--gold); font-weight: 600; margin-bottom: 10px;">SINCE 2010</p>
+                        <h2>Who We Are</h2>
+                        <div class="line"></div>
+                    </div>
+                    <p style="margin-bottom: 20px;">Jagruti Construction is a premier engineering and construction firm dedicated to building the vital infrastructure that connects communities. With over a decade of experience, we pride ourselves on precision, safety, and durability.</p>
+                    <p>We leverage modern machinery and a skilled workforce to deliver projects on time and within budget, ensuring the highest standards of civil engineering.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" style="background: rgba(0,0,0,0.2);">
+        <div class="container">
+            <div class="section-header" style="text-align: center;">
+                <h2>Our Expertise</h2>
+                <div class="line" style="margin: auto;"></div>
+            </div>
+            
+            <div class="services-grid">
+                <div class="glass-card">
+                    <div class="service-icon">🛣️</div>
+                    <h3>Road Construction</h3>
+                    <p style="color: var(--text-dim); margin-top: 15px;">High-durability asphalt and concrete roads designed for longevity and heavy traffic load.</p>
+                </div>
+                <div class="glass-card">
+                    <div class="service-icon">💧</div>
+                    <h3>Drainage Systems</h3>
+                    <p style="color: var(--text-dim); margin-top: 15px;">Efficient stormwater management systems to prevent flooding and protect urban infrastructure.</p>
+                </div>
+                <div class="glass-card">
+                    <div class="service-icon">🌉</div>
+                    <h3>Culverts & Bridges</h3>
+                    <p style="color: var(--text-dim); margin-top: 15px;">Expert structural engineering for culverts and small bridges ensuring seamless water passage.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2>Recent Work</h2>
+                <div class="line"></div>
+            </div>
+
+            <div class="projects-grid">
+                <div class="project-item" onclick="openLightbox('https://images.unsplash.com/photo-1517649563873-e553339a6cc4?auto=format&fit=crop&q=80&w=1000')">
+                    <img src="https://images.unsplash.com/photo-1517649563873-e553339a6cc4?auto=format&fit=crop&q=80&w=1000" alt="Road Project">
+                    <div class="project-overlay">
+                        <p style="color: var(--gold); font-size: 0.8rem; font-weight: 600;">HIGHWAY CONSTRUCTION</p>
+                        <h4 style="font-size: 1.2rem;">Main Link Road Expansion</h4>
+                    </div>
+                </div>
+                <div class="project-item" onclick="openLightbox('https://images.unsplash.com/photo-1590486803833-ffc6f08d5199?auto=format&fit=crop&q=80&w=1000')">
+                    <img src="https://images.unsplash.com/photo-1590486803833-ffc6f08d5199?auto=format&fit=crop&q=80&w=1000" alt="Drain Project">
+                    <div class="project-overlay">
+                        <p style="color: var(--gold); font-size: 0.8rem; font-weight: 600;">UTILITIES</p>
+                        <h4 style="font-size: 1.2rem;">City Drainage Network</h4>
+                    </div>
+                </div>
+                <div class="project-item" onclick="openLightbox('https://images.unsplash.com/photo-1584467541268-b040f83be3fd?auto=format&fit=crop&q=80&w=1000')">
+                    <img src="https://images.unsplash.com/photo-1584467541268-b040f83be3fd?auto=format&fit=crop&q=80&w=1000" alt="Culvert Project">
+                    <div class="project-overlay">
+                        <p style="color: var(--gold); font-size: 0.8rem; font-weight: 600;">STRUCTURAL</p>
+                        <h4 style="font-size: 1.2rem;">Regional Culvert Project</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div>
+                    <div class="section-header">
+                        <h2>Get In Touch</h2>
+                        <div class="line"></div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <p>Managing Director</p>
+                        <h3>Chauhan Pravinbhai</h3>
+                        <a href="tel:6355507400" class="btn btn-outline" style="padding: 10px 25px;">📞 6355507400</a>
+                    </div>
+
+                    <div class="contact-card">
+                        <p>Project Manager</p>
+                        <h3>Chauhan Jayeshbhai</h3>
+                        <a href="tel:9106299567" class="btn btn-outline" style="padding: 10px 25px;">📞 9106299567</a>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <form id="contactForm">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <input type="text" placeholder="Full Name" required>
+                            <input type="tel" placeholder="Phone Number" required>
+                        </div>
+                        <input type="email" placeholder="Email Address">
+                        <textarea rows="6" placeholder="Tell us about your project requirements..." required></textarea>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="logo" style="justify-content: center; margin-bottom: 20px;">
+                <div class="logo-circle">J</div>
+                Jagruti Construction
+            </div>
+            <p>© 2024 Jagruti Construction. All Rights Reserved.</p>
+            <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.5;">Building Trust • Constructing Relationships</p>
+        </div>
+    </footer>
+
+    <a class="whatsapp-float" href="https://wa.me/916355507400" target="_blank">
+        <svg width="32" height="32" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.634 1.437h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <div id="lightbox" onclick="this.style.display='none'">
+        <img id="lightboxImg">
+    </div>
+
+    <script>
+        // Navbar Scroll Effect
+        window.onscroll = function() {
+            const nav = document.getElementById('navbar');
+            if (window.pa
